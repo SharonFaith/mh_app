@@ -1,0 +1,23 @@
+{% load bootstrap3 %}
+
+{% block styles %}
+            {% bootstrap_css %}
+            <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+{% endblock %}
+
+
+
+<div class="container-fluid" > 
+    <div class="container" >
+        <form  action="{%url 'pat_signup'%}" method="post" enctype="multipart/form-data" style="background-color: whitesmoke; margin: 15px;padding: 15px;">
+            {%csrf_token%}
+        
+            {% bootstrap_form form%}
+            <input type="submit" class="btn btn-success btn-lg" value="Post">
+        </form>
+        {% block scripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            {% bootstrap_javascript %} 
+        {% endblock %}
+    </div>
+</div>

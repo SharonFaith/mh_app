@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block styles %}
+    {{block.super}}
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+{{block.super}}
+<div class="container">
+    <h1 class="text-center">Check your email for the link to activate your account. Check your spam folder if you do not see it in your primary inbox.</h1>
+</div>
+{% endblock %}
+
