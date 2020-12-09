@@ -40,7 +40,7 @@ MODE = config('MODE', default = 'dev')
 ACCOUNT_ACTIVATION_DAYS = 8 
 # Application definition
 
-#LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 #LOGOUT_REDIRECT_URL = '/'
 

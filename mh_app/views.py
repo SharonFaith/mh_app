@@ -26,6 +26,10 @@ def index(request):
    return render(request, 'index.html')
 
 
+def signupas(request):
+
+    return render(request, 'registration/sign_up.html')
+
 def patsignup(request):
     if request.method == 'POST':
         form = ClientSignUp(request.POST)
