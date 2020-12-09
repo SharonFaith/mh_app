@@ -78,3 +78,4 @@ class MhProProfile(models.Model):
     bio = models.TextField(blank =True, null=True)
     work_place = models.CharField(max_length=255)
     edu_level = models.CharField(max_length=255)
+    id_num = models.IntegerField(max_length=8)
