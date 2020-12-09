@@ -191,7 +191,7 @@ cloudinary.config(
   api_secret = config("CLOUDINARY_API_SECRET") 
 )
 
-AUTH_USER_MODEL = 'mh_app.User'
+#AUTH_USER_MODEL = 'mh_app.User'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
