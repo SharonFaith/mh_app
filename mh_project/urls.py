@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls import include
-from mh_app.views import patsignup, logout_view
+from mh_app.views import patsignup, logout_view, mhprosignup, signupas
 
 
 urlpatterns = [
@@ -24,6 +24,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('accounts/signup/user/', patsignup, name='pat_signup'),
+    path('accounts/signup/', signupas, name='sign_up_as'),
+    path('accounts/signup/mhpro/', mhprosignup, name='mhpro_signup'),
     path('logout/', logout_view),
     #path('accounts/signup/pro/', , name='mhpro_signup'),
 ]

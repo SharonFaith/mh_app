@@ -8,8 +8,10 @@ from django.utils.http import urlsafe_base64_decode
 from .email.token import activation_token
 from .email.activation_email import send_activation_email
 import requests
-from .forms import ClientSignUp
+from .models import UserProfile, MhProProfile, User
+from .forms import ClientSignUp, WorkerSignUp
 from django.contrib.sites.shortcuts import get_current_site
+
 
 
 def logout_view(request):
@@ -48,6 +50,29 @@ def patsignup(request):
         form = ClientSignUp()
 
     return render(request, 'registration/signup_form.html', {'form': form})
+
+def mhprosignup(request):
+    if request.method == 'POST':
+        form = WorkerSignUp(request.POST)
+
+
+
+        if form.is_valid():    
+            new_user = form.save()
+            workplace = form.cleaned_data['work_place']
+            id_num = form.cleaned_data['id_or_passport_number']
+            workcontact = form.cleaned_data['work_place_contact']
+            title = form.cleaned_data['title']
+            
+
+            MhProProfile.objects.filter(user=new_user).update(work_place = workplace, id_num=id_num, title=title, work_place_contact=workcontact)
+            #return redirect('/accounts/login')
+            return render(request, 'registration/accesslinklater.html')
+        
+    else:
+        form = WorkerSignUp()
+
+    return render(request, 'registration/mhproform.html', {'form': form})
 
 
 
