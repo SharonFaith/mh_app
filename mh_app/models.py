@@ -80,6 +80,6 @@ class MhProProfile(models.Model):
     work_place = models.CharField(max_length=255)
     work_place_contact = models.CharField(max_length=10, null=True)
     phone_number = models.CharField(max_length=10, blank=True, null=True)
-    edu_level = models.CharField(max_length=255)
+    education_level = models.CharField(max_length=255, blank=True, null=True)
     id_num = models.IntegerField(default=0)
     title = models.CharField(max_length=255, blank=True, null=True)
