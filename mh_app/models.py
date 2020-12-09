@@ -50,6 +50,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(max_length=255, unique=True)
     date_registered = models.DateTimeField(auto_now = True)
+    age = models.IntegerField(blank=True, null=True)
 
     # For the system admin
     is_superuser = models.BooleanField(default=False)
@@ -78,4 +79,4 @@ class MhProProfile(models.Model):
     bio = models.TextField(blank =True, null=True)
     work_place = models.CharField(max_length=255)
     edu_level = models.CharField(max_length=255)
-    id_num = models.IntegerField(max_length=8)
+    id_num = models.IntegerField(default=0)
