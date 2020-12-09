@@ -67,3 +67,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.username
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='clientprofile')
+    profile_pic = CloudinaryField(blank=True, null=True)
+    bio = models.TextField(blank =True, null=True)
+
+class MhProProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='mhproprofile')
+    profile_pic = CloudinaryField(blank=True, null=True)
+    bio = models.TextField(blank =True, null=True)
+    work_place = models.CharField(max_length=255)
+    edu_level = models.CharField(max_length=255)
