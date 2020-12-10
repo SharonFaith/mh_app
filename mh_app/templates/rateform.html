@@ -1,0 +1,46 @@
+{% load bootstrap3 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Ratings</title>
+  {{form.media}}
+
+    {% block styles %} 
+        
+        {% bootstrap_css%}
+        
+    
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body class="text-center">
+<div class="container-fluid"> 
+    <div class="container" >
+    {% include 'navbar.html' %}
+    <h3>{{phrase}}</h3>
+    {% if formtrue %}
+        <form  action="{% url 'rate-worker' the_id %} " method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+        
+            {% bootstrap_form form%}
+            <input type="submit" class="btn btn-success btn-lg" value="Post">
+        </form>
+    {% elif phrase != '' %}
+        <p>  </p>
+    {% else %}
+    <h3>Your rating has been added. Click <a href="{% url 'profile' current_profile.user.id %}">here</a> to view the overall ratings</h3>
+    {% endif %}   
+    </div>
+</div>
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {% bootstrap_javascript %} 
+    {% endblock %}
+</body>
+</html>

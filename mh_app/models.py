@@ -70,16 +70,40 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='clientprofile')
-    profile_pic = CloudinaryField(blank=True, null=True)
+    #profile_pic = CloudinaryField(blank=True, null=True)
+    profile_pic = models.ImageField(upload_to = 'uploads/', default = 'pics', blank =True)
     bio = models.TextField(blank =True, null=True)
 
 class MhProProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='mhproprofile')
-    profile_pic = CloudinaryField(blank=True, null=True)
+    #profile_pic = CloudinaryField(blank=True, null=True)
+    profile_pic = models.ImageField(upload_to = 'uploads/', default = 'pics', blank =True)
     bio = models.TextField(blank =True, null=True)
     work_place = models.CharField(max_length=255)
     work_place_contact = models.CharField(max_length=10, null=True)
     phone_number = models.CharField(max_length=10, blank=True, null=True)
     education_level = models.CharField(max_length=255, blank=True, null=True)
-    id_num = models.IntegerField(default=0)
+    id_number = models.IntegerField(default=0)
     title = models.CharField(max_length=255, blank=True, null=True)
+
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    content = models.TextField(max_length=400, blank=True)
+    posted_at = models.DateTimeField(auto_now_add=True)
+
+class Rating(models.Model):
+    user_rating = models.ForeignKey(User, on_delete=models.CASCADE, default = None, related_name='ratings_done')
+    person_rated = models.ForeignKey(MhProProfile, on_delete=models.CASCADE,default = None, related_name='ratings')
+    
+    ratings_out_of_10 = models.DecimalField(max_digits=4, decimal_places=2)
+    overall= models.DecimalField(max_digits=4, decimal_places=2)
+
+    # class Meta:
+    #     unique_together = ('user_rating', 'person_rated')
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews_written')
+    person_reviewing = models.ForeignKey(MhProProfile, on_delete=models.CASCADE, related_name='reviews')
+    content = models.TextField(max_length=400, blank=True)
+    posted_at = models.DateTimeField(auto_now_add=True)
+

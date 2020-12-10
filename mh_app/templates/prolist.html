@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block styles %}
+            {% bootstrap_css %}
+            <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+{{block.super}}
+<div>
+    <div class="container text-center">
+        <h1>List of professionals: </h1>
+        <hr>
+        <hr>
+        <h3>Click on the relevant name to view their profile and contact them </h3>
+        {% for pro in pro_profiles %}
+        <a href="{% url 'profile' pro.user.id %}"> <h3>- {{pro.user.username}}</h3></a>
+        {% endfor %}
+    </div>
+</div>
+    
+{% endblock %}

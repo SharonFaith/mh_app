@@ -1,0 +1,195 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+
+
+{% block content %}
+{{block.super}}
+<div class="container-fluid">
+
+
+<div class="container" >
+    <h1 style="text-align: center;"><strong> {{the_title}} {{current_user.first_name}} {{current_user.last_name}}</strong></h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-4" style="text-align: center;">
+            
+            <hr>
+            {% if user_profile.bio %}
+                <h4><strong>Bio :</strong></h4>
+                <p>{{user_profile.bio}}</p>
+                
+            {% else %}
+                <p>{{current_user.username}} has no bio</p>
+                <hr>
+                
+            {% endif %}
+            
+                {% if current_user.is_staff %}
+                
+            
+                    <h4 ><strong>Credentials:</strong></h4>
+                    {% if user_profile.work_place %}
+                    <h4><strong>Work place: </strong>{{user_profile.work_place}}</h4>
+                    {% else %}
+                    <h4><strong>Work Place:</strong>Not yet updated</h4>
+                    {% endif %}
+                    {% if user_profile.education_level %}
+                    <h4><strong>Education level: </strong>{{user_profile.education_level}}</h4>
+                    {% else %}
+                    <h4><strong>Education level:</strong>Not yet updated</h4>
+                    {% endif %}
+                    {% if user_profile.phone_number %}
+                    <h4><strong>Phone number: </strong>{{user_profile.phone_number}}</h4>
+                    {% else %}
+                    <h4><strong>Phone number:</strong>Not yet updated</h4>
+                    {% endif %}
+                    <hr>
+                {% endif %}
+            
+            
+        </div>
+        <div class="col-md-4" style="padding: 30px; text-align: center;">
+            {% if user_profile.profile_pic != 'pics' %}
+            
+                <img src="{{user_profile.profile_pic.url}}" alt="" class="img-thumbnail">
+            
+            {% else %}
+                <p>No profile picture</p>
+            {% endif %}
+            
+            
+        </div>
+        <div class="col-md-4">
+            <hr>
+            {% if user == current_user %}
+                <a href="{% url 'update_profile' %}"><h4>Edit/Update profile </h4></a>
+                <hr>
+                <a href="{% url 'add_post' %}"><h4>Add an encouraging post to the homepage</h4></a>
+                <br>
+                
+            {% else %}
+                {% if current_user.is_staff %}
+                    <h4>Get it touch via email to schedule a session: </h4>
+                    <h4><strong>Email: </strong>{{ current_user.email}}</h4>
+                    <a href="{% url 'rate-worker' user_profile.id %}"><h4>Add a rating</h4></a>
+                    <a href="{% url 'review-worker' user_profile.id %}"><h4>Add a review</h4></a>
+                {% endif %}
+            {% endif %}
+           
+            <hr>
+            
+           
+        </div>
+          
+    </div>
+    <hr>
+    
+           
+        {% if current_user.is_staff %}
+            
+            {% if ratings%}
+            <h1>Ratings</h1>
+            <br>
+            <h3>OVERALL SCORE: {{overall_rating}}</3>
+            
+
+            {% for rating in ratings %}
+            <div class="row">
+                        <hr>
+    
+                        
+                            <div class="col-md-4">
+    
+                            </div>
+                            <div class="col-md-4">
+                                <div class = "card" style="background-color: whitesmoke; border: whitesmoke; padding: 15px; margin: 10px;">
+                                    <div class = "card-header text-center" style="background-color: whitesmoke;">
+                                        
+                                        
+                                        <p><em>By {{rating.user_rating}}</em></p>
+                                    </div>
+                                    <div class = "card-body">
+                                       
+                                        <p><strong>Rating out of 10: </strong>{{rating.ratings_out_of_10}}</p>
+                                        
+                                    </div>
+                                    <div class="card-footer">
+                                       
+                                        
+                                        <p><strong>Final rating by {{rating.user_rating}}: </strong>{{rating.overall}}</p>
+                                        
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+    
+                            </div>
+                            
+                    
+                
+                
+            
+            </div>
+            {% empty %}
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8" style="color: white; text-align: center;">
+                            
+                            <h3>No ratings yet </h3>
+                           
+                        </div>
+                        <br>
+                        <div class="col-md-2"></div>
+    
+            {% endfor %}
+            {% endif %}
+
+            {% if reviews %}
+            <h1>Reviews</h1>
+            <br>
+            
+                {% for review in reviews %}
+                <div class = "row">
+                    <div class = col-md-12>
+                        <li>{{review.content}}</li>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            {% if posts %}
+                <h1>Posts:</h1>
+                <br>
+                {% for post in posts %}
+                <div class = "row">
+                    <div class = col-md-12>
+                        <li>{{post.content}}</li>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+         
+        {% else %}
+        <h1>Posts:</h1>
+        <br>
+        
+            {% if posts %}
+                {% for post in posts %}
+                <div class = "row">
+                    <div class = col-md-12>
+                        <li>{{post.content}}</li>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+        
+          
+
+    
+</div>
+</div>
+{% endblock %}
+
+<!--Add under edit profile section the form-->

@@ -35,10 +35,13 @@
                   <a href="/">Home</a>
                 </li>
                 <li>
-                  <a href="">List of Professionals</a>
+                  <a href="{% url 'prolist' %}">List of Professionals</a>
                 </li>
                 <li>
-                  <a href="" >Profile</a>
+                  <a href="{% url 'userlist' %}">List of other users</a>
+                </li>
+                <li>
+                  <a href="{% url 'profile' user.id %}" >Profile</a>
                 </li>
                   
                   <!--<a href="/accounts/password/change">Change Password</a>-->
