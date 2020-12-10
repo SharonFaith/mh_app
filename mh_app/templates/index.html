@@ -48,14 +48,14 @@
         </div>
         <hr>
         <div class = "row">
-            <h1>WELCOME TO MH APP</h1>
+            <h1 style="background-color:rgb(165, 148, 19);">WELCOME TO MH APP</h1>
             
         </div>
         <hr>
         <hr>
         {% if profile %}
             <div class="row" >
-                <h3>A SNIPPET OF ONE OF OUR PROFESSIONALS:</h3>
+                <h3 >A SNIPPET OF ONE OF OUR PROFESSIONALS:</h3>
                 <a href="{% url 'prolist'%}"><h4>(SEE LIST OF ALL PROFESSIONALS)</h4></a>
                 <br>
                 <div class="col-md-3">
@@ -96,7 +96,7 @@
         {% endif %}
         {% if posts %}
         <hr>
-        <h3>SOME ENCOURAGING WORDS POSTED BY OTHER USERS:</h3>
+        <h3 style="background-color:rgb(165, 148, 19)">SOME ENCOURAGING WORDS POSTED BY OTHER USERS:</h3>
         <a href="{% url 'add_post'%}"><h4>(SIGN IN TO ADD A POST)</h4></a><br>
             {% for post in posts %}
             <div class="row" >

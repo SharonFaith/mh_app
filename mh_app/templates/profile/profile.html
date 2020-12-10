@@ -1,13 +1,15 @@
 {%extends 'base.html'%}
 {% load bootstrap3 %}
 
-
+{% block styles %}
+            {% bootstrap_css %}
+            <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+{% endblock %}
+            
 {% block content %}
 {{block.super}}
-<div class="container-fluid">
-
-
-<div class="container" >
+<div class="container-fluid" style="background-color:rgb(165, 148, 19);"> 
+    <div class="container text-center" style=" font-family: 'Fredoka One', cursive; background-color:white; color: black;">
     <h1 style="text-align: center;"><strong> {{the_title}} {{current_user.first_name}} {{current_user.last_name}}</strong></h1>
     <hr>
     <div class="row">
