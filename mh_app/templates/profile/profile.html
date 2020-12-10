@@ -86,19 +86,19 @@
     
            
         {% if current_user.is_staff %}
-            
+         <div class = "text-center">
             {% if ratings%}
             <h1>Ratings</h1>
             <br>
-            <h3>OVERALL SCORE: {{overall_rating}}</3>
-            
-
-            {% for rating in ratings %}
+            <h3>OVERALL SCORE: {{overall_rating}}</h3>
+            <hr>
             <div class="row">
-                        <hr>
+            {% for rating in ratings %}
+            
+                       
     
                         
-                            <div class="col-md-4">
+                            <div class="col-md-1">
     
                             </div>
                             <div class="col-md-4">
@@ -123,7 +123,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-4">
+                            <div class="col-md-1">
     
                             </div>
                             
@@ -131,7 +131,7 @@
                 
                 
             
-            </div>
+            
             {% empty %}
                         <div class="col-md-2"></div>
                         <div class="col-md-8" style="color: white; text-align: center;">
@@ -143,46 +143,135 @@
                         <div class="col-md-2"></div>
     
             {% endfor %}
+            </div>
             {% endif %}
 
             {% if reviews %}
             <h1>Reviews</h1>
             <br>
+            <hr>
+            <div class="row">
+            {% for review in reviews %}
             
-                {% for review in reviews %}
-                <div class = "row">
-                    <div class = col-md-12>
-                        <li>{{review.content}}</li>
-                    </div>
-                </div>
+                       
+    
+                        
+                            <div class="col-md-1">
+    
+                            </div>
+                            <div class="col-md-4">
+                                <div class = "card" style="background-color: whitesmoke; border: whitesmoke; padding: 15px; margin: 10px;">
+                                    <div class = "card-header text-center" style="background-color: whitesmoke;">
+                                        
+                                        
+                                        <p><em>By {{review.user}}</em></p>
+                                    </div>
+                                    <div class = "card-body">
+                                       
+                                        <p><strong>Review: </strong>{{review.content}}</p>
+                                        
+                                    </div>
+                                    <div class="card-footer">
+                                       
+                                        
+                                        <p><strong>Posted:  </strong>{{review.posted_at}}</p>
+                                        
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-1">
+    
+                            </div>
                 {% endfor %}
+                </div>
+               
             {% endif %}
-
+                
             {% if posts %}
+
                 <h1>Posts:</h1>
                 <br>
-                {% for post in posts %}
-                <div class = "row">
-                    <div class = col-md-12>
-                        <li>{{post.content}}</li>
-                    </div>
-                </div>
+                <hr>
+            <div class="row">
+            {% for post in posts %}
+            
+                       
+    
+                        
+                            <div class="col-md-1">
+    
+                            </div>
+                            <div class="col-md-4">
+                                <div class = "card" style="background-color: whitesmoke; border: whitesmoke; padding: 15px; margin: 10px;">
+                                    <div class = "card-header text-center" style="background-color: whitesmoke;">
+                                        
+                                        
+                                        <p><em>By {{post.user}}</em></p>
+                                    </div>
+                                    <div class = "card-body">
+                                       
+                                        <p><strong>Post: </strong>{{post.content}}</p>
+                                        
+                                    </div>
+                                    <div class="card-footer">
+                                       
+                                        
+                                        <p><strong>Posted:  </strong>{{post.posted_at}}</p>
+                                        
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-1">
+    
+                            </div>
                 {% endfor %}
+                </div>
+                
             {% endif %}
          
         {% else %}
         <h1>Posts:</h1>
         <br>
-        
-            {% if posts %}
-                {% for post in posts %}
-                <div class = "row">
-                    <div class = col-md-12>
-                        <li>{{post.content}}</li>
-                    </div>
-                </div>
+        <div class="row">
+            {% for post in posts %}
+            
+                       
+    
+                        
+                            <div class="col-md-1">
+    
+                            </div>
+                            <div class="col-md-4">
+                                <div class = "card" style="background-color: whitesmoke; border: whitesmoke; padding: 15px; margin: 10px;">
+                                    <div class = "card-header text-center" style="background-color: whitesmoke;">
+                                        
+                                        
+                                        <p><em>By {{post.user}}</em></p>
+                                    </div>
+                                    <div class = "card-body">
+                                       
+                                        <p><strong>Post: </strong>{{post.content}}</p>
+                                        
+                                    </div>
+                                    <div class="card-footer">
+                                       
+                                        
+                                        <p><strong>Posted:  </strong>{{post.posted_at}}</p>
+                                        
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-1">
+    
+                            </div>
                 {% endfor %}
-            {% endif %}
+                </div>
         {% endif %}
         
           

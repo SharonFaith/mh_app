@@ -11,7 +11,7 @@ import requests
 from .models import UserProfile, MhProProfile, User, Post
 from .forms import ClientSignUp, WorkerSignUp, UpdateProfileMhp, UpdateProfileUser, AddPost, RatingsForm, ReviewForm
 from django.contrib.sites.shortcuts import get_current_site
-
+import random
 
 
 def logout_view(request):
@@ -23,9 +23,16 @@ def logout_view(request):
 
 
 def index(request):
-
+   profiles = MhProProfile.objects.first()
    
-   return render(request, 'index.html')
+   posts = Post.objects.all().order_by('-id')
+   
+   if posts:
+       random_post = random.choice(posts)
+
+   print(profiles)
+
+   return render(request, 'index.html', {'profile': profiles, 'posts':posts, 'random_post':random_post})
 
 
 def signupas(request):

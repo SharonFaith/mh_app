@@ -26,7 +26,7 @@ class ClientSignUp(UserCreationForm):
         
         return user
    
-CHOICES = [(1, 'Prof.'), (2, 'Dr.'), (3, 'Ms.'), (4, 'Mrs.'), (5, 'Mr.')]
+CHOICES = [('Prof.', 'Prof.'), ('Dr.', 'Dr.'), ('Ms.', 'Ms.'), ('Mrs.', 'Mrs.'), ('Mr', 'Mr.')]
 
 
 class WorkerSignUp(UserCreationForm):

@@ -13,7 +13,7 @@
 
     {% block styles %} 
         {% bootstrap_css %}
-        
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     {% endblock %}
 
 </head>
@@ -21,8 +21,9 @@
 <body>
     
     {% include 'navbar.html' %}
-    <div class="container-fluid" style="background-color: black;">
-    <form  action="{%url 'add_post'%}" method="post" enctype="multipart/form-data" style="background-color: whitesmoke; margin: 15px;padding: 15px;">
+    <div class="container-fluid" style="background-color:rgb(165, 148, 19);"> 
+        <div class="container text-center" style=" font-family: 'Fredoka One', cursive; background-color:white; color: black;">
+        <form  action="{%url 'add_post'%}" method="post" enctype="multipart/form-data" style="background-color: whitesmoke; margin: 15px;padding: 15px;">
         {%csrf_token%}
     
         {% bootstrap_form form%}
@@ -33,4 +34,5 @@
         {% bootstrap_javascript %} 
     {% endblock %}
     </div>
+</div>
 </body>

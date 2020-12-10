@@ -21,7 +21,8 @@
 <body>
     
     {% include 'navbar.html' %}
-    <div class="container-fluid" style="background-color: black;">
+    <div class="container-fluid" style="background-color:rgb(165, 148, 19);"> 
+        <div class="container text-center" style=" font-family: 'Fredoka One', cursive; background-color:white; color: black;">
     <form  action="{%url 'update_profile'%}" method="post" enctype="multipart/form-data" style="background-color: whitesmoke; margin: 15px;padding: 15px;">
         {%csrf_token%}
     
@@ -32,5 +33,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         {% bootstrap_javascript %} 
     {% endblock %}
+    </div>
     </div>
 </body>
